@@ -4,4 +4,4 @@ node_modules/
 dist/
 build/
 # Environment variables
-.env
+node_modules
