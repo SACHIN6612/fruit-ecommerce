@@ -1,12 +1,48 @@
-# React + Vite
+# 🍉 Fruit E-commerce
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive **fruit e-commerce web application** built with **React**, **Vite**, and optionally **Node.js** backend.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+- Browse a variety of fresh fruits, vegetables, dairy, and bakery 🥭🍎🍌  
+- Add products to cart & remove items 🛒  
+- Responsive UI for mobile and desktop 📱💻  
+- Product detail pages with description & price 💰  
+- Easy integration with backend APIs
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🛠 Tech Stack
+
+| Frontend        | Backend      | Others                |
+|-----------------|--------------|-----------------------|
+| HTML5           | Node.js      | Vite                  |
+| CSS3            | Express.js   | npm                   |
+| JAVASCRIPT      | MySQL        | postman               |
+| REACT           |              | responsive web sesign |
+
+---
+
+## 📁 Project Structure
+
+fruit-ecommerce/
+│
+├─ public/ # Static assets (images, favicon)
+├─ src/
+│ ├─ components/ # Reusable React components
+│ ├─ pages/ # App pages
+│ ├─ App.jsx # Main React component
+│ └─ main.jsx # Entry point
+├─ package.json # Project metadata & scripts
+└─ README.md # Documentation
+
+⚡ Installation & Setup
+
+git clone https://github.com/SACHIN6612/fruit-ecommerce.git
+cd fruit-ecommerce
+npm run start:all(Frontend + Backend Both)
+
+Open in browser:
+http://localhost:5173(Started the Frontend And Backend Both)
