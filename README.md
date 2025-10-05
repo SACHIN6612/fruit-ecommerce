@@ -47,4 +47,4 @@ cd fruit-ecommerce
 npm run start:all(Frontend + Backend Both)
 
 Open in browser:
-http://localhost:5173(Started the Frontend And Backend Both)
+http://localhost:5173       (Started the Frontend And Backend Both)
