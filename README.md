@@ -41,7 +41,9 @@ fruit-ecommerce/
 ⚡ Installation & Setup
 
 git clone https://github.com/SACHIN6612/fruit-ecommerce.git
+
 cd fruit-ecommerce
+
 npm run start:all(Frontend + Backend Both)
 
 Open in browser:
