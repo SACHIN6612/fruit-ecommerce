@@ -22,7 +22,7 @@ A modern, responsive **fruit e-commerce web application** built with **React**, 
 | CSS3            | Express.js   | npm                   |
 | Javascript      | MySQL        | postman               |
 | React           |              | responsive web sesign |
-                                 | Git & Github          |
+|                 |              | Git & Github          | 
 ---
 
 ## 📁 Project Structure
