@@ -29,45 +29,12 @@ function App() {
       .catch((error) => console.log(error));
   }, []);
 
-  useEffect(() => {
-    if (typeof $ !== "undefined" && $.fn.owlCarousel) {
-      $(".testimonial-carousel").owlCarousel({
-        autoplay: true,
-        smartSpeed: 1500,
-        center: false,
-        dots: true,
-        loop: true,
-        margin: 25,
-        nav: false,
-        responsiveClass: true,
-        responsive: {
-          0: {
-            items: 1,
-          },
-          576: {
-            items: 1,
-          },
-          768: {
-            items: 1,
-          },
-          992: {
-            items: 2,
-          },
-          1200: {
-            items: 2,
-          },
-        },
-      });
-    } else {
-    }
-  }, []);
-
   return (
     <>
       <Header />
       {/* Hero Start */}
       <div className="container-fluid py-5 mb-5 hero-header">
-        <div className="container py-5">
+        <div className="container-fluid py-5">
           <div className="row g-5 align-items-center">
             <div className="col-md-12 col-lg-7">
               <h4 className="mb-3 text-secondary">100% Organic Foods</h4>
@@ -147,58 +114,6 @@ function App() {
         </div>
       </div>
       {/* Hero End */}
-      {/* Featurs Section Start */}
-      <div className="container-fluid featurs">
-        <div className="container">
-          <div className="row g-4">
-            <div className="col-md-6 col-lg-3">
-              <div className="featurs-item text-center rounded bg-light p-4">
-                <div className="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
-                  <i className="fas fa-car-side fa-3x text-white" />
-                </div>
-                <div className="featurs-content text-center">
-                  <h5>Free Shipping</h5>
-                  <p className="mb-0">Free on order over $300</p>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-6 col-lg-3">
-              <div className="featurs-item text-center rounded bg-light p-4">
-                <div className="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
-                  <i className="fas fa-user-shield fa-3x text-white" />
-                </div>
-                <div className="featurs-content text-center">
-                  <h5>Security Payment</h5>
-                  <p className="mb-0">100% security payment</p>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-6 col-lg-3">
-              <div className="featurs-item text-center rounded bg-light p-4">
-                <div className="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
-                  <i className="fas fa-exchange-alt fa-3x text-white" />
-                </div>
-                <div className="featurs-content text-center">
-                  <h5>30 Day Return</h5>
-                  <p className="mb-0">30 day money guarantee</p>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-6 col-lg-3">
-              <div className="featurs-item text-center rounded bg-light p-4">
-                <div className="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
-                  <i className="fa fa-phone-alt fa-3x text-white" />
-                </div>
-                <div className="featurs-content text-center">
-                  <h5>24/7 Support</h5>
-                  <p className="mb-0">Support every time fast</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* Featurs Section End */}
       {/* Fruits Shop Start*/}
       <div className="container-fluid fruite">
         <div className="container py-5">
@@ -543,124 +458,95 @@ function App() {
       </div>
 
       {/* Tastimonial Start */}
-      <div className="container-fluid testimonial">
-        <div className="container py-5">
-          <div className="testimonial-header text-center">
-            <h4 className="text-primary">Our Testimonial</h4>
-            <h1 className="display-5 mb-5 text-dark">Our Client Saying!</h1>
-          </div>
-          <div className="owl-carousel testimonial-carousel">
-            <div className="testimonial-item img-border-radius bg-light rounded p-4">
-              <div className="position-relative">
-                <i
-                  className="fa fa-quote-right fa-2x text-secondary position-absolute"
-                  style={{ bottom: 30, right: 0 }}
-                />
-                <div className="mb-4 pb-4 border-bottom border-secondary">
-                  <p className="mb-0">
-                    Lorem Ipsum is simply dummy text of the printing Ipsum has
-                    been the industry's standard dummy text ever since the
-                    1500s,
+      <div className="py-5">
+        <div className="container text-center">
+          <h2 className="fw-bold mb-5">What Our Clients Say</h2>
+          <div className="row g-4">
+            {/* Testimonial 1 */}
+            <div className="col-12 col-md-4">
+              <div className="card testimonial-card p-4 h-100">
+                <div className="d-flex flex-column align-items-center">
+                  <img
+                    src="https://randomuser.me/api/portraits/women/44.jpg"
+                    alt="Client 1"
+                    className="client-img mb-3"
+                  />
+                  <h5 className="fw-semibold mb-0">
+                    Sarah Johnson
+                  </h5>
+                  <span className="text-muted small mb-2">
+                    Marketing Manager
+                  </span>
+                  <div className="stars mb-3">
+                    <i className="bi bi-star-fill" />
+                    <i className="bi bi-star-fill" />
+                    <i className="bi bi-star-fill" />
+                    <i className="bi bi-star-fill" />
+                    <i className="bi bi-star-half" />
+                  </div>
+                  <p className="text-dark small">
+                    “They did a fantastic job! The team was very professional,
+                    and my website looks amazing.”
                   </p>
-                </div>
-                <div className="d-flex align-items-center flex-nowrap">
-                  <div className="bg-secondary rounded">
-                    <img
-                      src="img/testimonial-1.jpg"
-                      className="img-fluid rounded"
-                      style={{ width: 100, height: 100 }}
-                      alt=""
-                    />
-                  </div>
-                  <div className="ms-4 d-block">
-                    <h4 className="text-dark">Client Name</h4>
-                    <p className="m-0 pb-3">Profession</p>
-                    <div className="d-flex pe-5">
-                      <i className="fas fa-star text-primary" />
-                      <i className="fas fa-star text-primary" />
-                      <i className="fas fa-star text-primary" />
-                      <i className="fas fa-star text-primary" />
-                      <i className="fas fa-star" />
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
-            <div className="testimonial-item img-border-radius bg-light rounded p-4">
-              <div className="position-relative">
-                <i
-                  className="fa fa-quote-right fa-2x text-secondary position-absolute"
-                  style={{ bottom: 30, right: 0 }}
-                />
-                <div className="mb-4 pb-4 border-bottom border-secondary">
-                  <p className="mb-0">
-                    Lorem Ipsum is simply dummy text of the printing Ipsum has
-                    been the industry's standard dummy text ever since the
-                    1500s,
+            {/* Testimonial 2 */}
+            <div className="col-12 col-md-4">
+              <div className="card testimonial-card p-4 h-100">
+                <div className="d-flex flex-column align-items-center">
+                  <img
+                    src="https://randomuser.me/api/portraits/men/32.jpg"
+                    alt="Client 2"
+                    className="client-img mb-3"
+                  />
+                  <h5 className="fw-semibold mb-0">
+                    Michael Smith
+                  </h5>
+                  <span className="text-muted small mb-2">Web Developer</span>
+                  <div className="stars mb-3">
+                    <i className="bi bi-star-fill" />
+                    <i className="bi bi-star-fill" />
+                    <i className="bi bi-star-fill" />
+                    <i className="bi bi-star-fill" />
+                    <i className="bi bi-star" />
+                  </div>
+                  <p className="text-dark small">
+                    “The experience was smooth and pleasant. Excellent design
+                    quality and quick support.”
                   </p>
-                </div>
-                <div className="d-flex align-items-center flex-nowrap">
-                  <div className="bg-secondary rounded">
-                    <img
-                      src="img/testimonial-1.jpg"
-                      className="img-fluid rounded"
-                      style={{ width: 100, height: 100 }}
-                      alt=""
-                    />
-                  </div>
-                  <div className="ms-4 d-block">
-                    <h4 className="text-dark">Client Name</h4>
-                    <p className="m-0 pb-3">Profession</p>
-                    <div className="d-flex pe-5">
-                      <i className="fas fa-star text-primary" />
-                      <i className="fas fa-star text-primary" />
-                      <i className="fas fa-star text-primary" />
-                      <i className="fas fa-star text-primary" />
-                      <i className="fas fa-star text-primary" />
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
-            <div className="testimonial-item img-border-radius bg-light rounded p-4">
-              <div className="position-relative">
-                <i
-                  className="fa fa-quote-right fa-2x text-secondary position-absolute"
-                  style={{ bottom: 30, right: 0 }}
-                />
-                <div className="mb-4 pb-4 border-bottom border-secondary">
-                  <p className="mb-0">
-                    Lorem Ipsum is simply dummy text of the printing Ipsum has
-                    been the industry's standard dummy text ever since the
-                    1500s,
+            {/* Testimonial 3 */}
+            <div className="col-12 col-md-4">
+              <div className="card testimonial-card p-4 h-100">
+                <div className="d-flex flex-column align-items-center">
+                  <img
+                    src="https://randomuser.me/api/portraits/women/65.jpg"
+                    alt="Client 3"
+                    className="client-img mb-3"
+                  />
+                  <h5 className="fw-semibold mb-0">Emma Wilson</h5>
+                  <span className="text-muted small mb-2">Entrepreneur</span>
+                  <div className="stars mb-3">
+                    <i className="bi bi-star-fill" />
+                    <i className="bi bi-star-fill" />
+                    <i className="bi bi-star-fill" />
+                    <i className="bi bi-star-fill" />
+                    <i className="bi bi-star-fill" />
+                  </div>
+                  <p className="text-dark small">
+                    “Highly recommended! They provided creative ideas and
+                    delivered on time.”
                   </p>
-                </div>
-                <div className="d-flex align-items-center flex-nowrap">
-                  <div className="bg-secondary rounded">
-                    <img
-                      src="img/testimonial-1.jpg"
-                      className="img-fluid rounded"
-                      style={{ width: 100, height: 100 }}
-                      alt=""
-                    />
-                  </div>
-                  <div className="ms-4 d-block">
-                    <h4 className="text-dark">Client Name</h4>
-                    <p className="m-0 pb-3">Profession</p>
-                    <div className="d-flex pe-5">
-                      <i className="fas fa-star text-primary" />
-                      <i className="fas fa-star text-primary" />
-                      <i className="fas fa-star text-primary" />
-                      <i className="fas fa-star text-primary" />
-                      <i className="fas fa-star text-primary" />
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
       {/* Tastimonial End */}
       <Footer />
     </>

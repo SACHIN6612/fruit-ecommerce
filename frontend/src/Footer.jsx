@@ -84,7 +84,7 @@ function Footer(){
                     <a className="btn-link" href="">
                     About Us
                     </a>
-                    <a className="btn-link" href="">
+                    <a className="btn-link" href="/contact">
                     Contact Us
                     </a>
                     <a className="btn-link" href="">
@@ -107,20 +107,17 @@ function Footer(){
                     <a className="btn-link" href="">
                     My Account
                     </a>
-                    <a className="btn-link" href="">
-                    Shop details
+                    <a className="btn-link" href="/shop">
+                    Shop Now
                     </a>
-                    <a className="btn-link" href="">
+                    <a className="btn-link" href="/cart">
                     Shopping Cart
-                    </a>
-                    <a className="btn-link" href="">
-                    Wishlist
                     </a>
                     <a className="btn-link" href="">
                     Order History
                     </a>
-                    <a className="btn-link" href="">
-                    International Orders
+                    <a className="btn-link" href="/testimonials">
+                    Customer Reviews
                     </a>
                 </div>
                 </div>

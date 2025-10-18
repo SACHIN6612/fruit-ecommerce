@@ -4025,10 +4025,11 @@ fieldset:disabled .btn {
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #fff;
+  background-color: ghostwhite;
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 10px;
+  color: #81c408;
 }
 .card > hr {
   margin-right: 0;
@@ -6673,8 +6674,7 @@ fieldset:disabled .btn {
   padding-bottom: 1.5rem !important;
 }
 .py-5 {
-  padding-top: 60px !important;
-  padding-bottom: 60px !important;
+  padding-top: 80px !important;
 }
 .pt-0 {
   padding-top: 0 !important;
