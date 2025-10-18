@@ -146,7 +146,7 @@ function Footer(){
                 <span className="text-light">
                     <a href="#">
                     <i className="fas fa-copyright text-light me-2" />
-                    Sachin Zanzrukiya
+                    Your Site Name
                     </a>
                     , All right reserved.
                 </span>

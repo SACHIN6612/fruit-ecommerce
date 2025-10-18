@@ -67,7 +67,7 @@ function App() {
       <Header />
       {/* Hero Start */}
       <div className="container-fluid py-5 mb-5 hero-header">
-        <div className="container-fluid py-5">
+        <div className="container py-5">
           <div className="row g-5 align-items-center">
             <div className="col-md-12 col-lg-7">
               <h4 className="mb-3 text-secondary">100% Organic Foods</h4>
