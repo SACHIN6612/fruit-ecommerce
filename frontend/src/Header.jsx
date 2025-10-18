@@ -1,4 +1,23 @@
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 function Header() {
+  const [keyword, setKeyword] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const trimmed = keyword.trim();
+    if (trimmed !== "") {
+      // Navigate to Shop page with search query
+      navigate(`/shop?search=${encodeURIComponent(trimmed)}`);
+      // Close modal after searching
+      const modal = document.getElementById("searchModal");
+      const modalInstance = window.bootstrap.Modal.getInstance(modal);
+      modalInstance.hide();
+    }
+  };
+
   return (
     <>
       {/* Navbar start */}
@@ -7,7 +26,7 @@ function Header() {
           <div className="d-flex justify-content-between">
             <div className="top-info ps-2">
               <small className="me-3">
-                <i className="fas fa-map-marker-alt me-2 text-secondary" />{" "}
+                <i className="fas fa-map-marker-alt me-2 text-secondary" />
                 <a href="#" className="text-white">
                   123 Street, New York
                 </a>
@@ -32,6 +51,8 @@ function Header() {
             </div>
           </div>
         </div>
+
+        {/* Navbar */}
         <div className="container-fluid px-0">
           <nav className="navbar navbar-light bg-white navbar-expand-xl mt-3">
             <a href="/" className="navbar-brand">
@@ -45,10 +66,8 @@ function Header() {
             >
               <span className="fa fa-bars text-primary" />
             </button>
-            <div
-              className="collapse navbar-collapse bg-white"
-              id="navbarCollapse"
-            >
+
+            <div className="collapse navbar-collapse bg-white" id="navbarCollapse">
               <div className="navbar-nav mx-auto">
                 <a href="/" className="nav-item nav-link active">
                   Home
@@ -86,6 +105,8 @@ function Header() {
                   Contact
                 </a>
               </div>
+
+              {/* Right icons */}
               <div className="d-flex m-3 me-0">
                 <button
                   className="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4"
@@ -94,6 +115,7 @@ function Header() {
                 >
                   <i className="fas fa-search text-primary" />
                 </button>
+
                 <a href="/cart" className="position-relative me-4 my-auto">
                   <i className="fa fa-shopping-bag fa-2x" />
                   <span
@@ -103,7 +125,8 @@ function Header() {
                     3
                   </span>
                 </a>
-                <a href="/signup" className="my-auto">
+
+                <a href="/login" className="my-auto">
                   <i className="fas fa-user fa-2x" />
                 </a>
               </div>
@@ -111,21 +134,18 @@ function Header() {
           </nav>
         </div>
       </div>
-      {/* Navbar End */}
-      {/* Modal Search Start */}
+
+      {/* Modal Search */}
       <div
         className="modal fade"
         id="searchModal"
         tabIndex={-1}
-        aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
         <div className="modal-dialog modal-fullscreen">
           <div className="modal-content rounded-0">
             <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">
-                Search by keyword
-              </h5>
+              <h5 className="modal-title">Search by keyword</h5>
               <button
                 type="button"
                 className="btn-close"
@@ -134,22 +154,29 @@ function Header() {
               />
             </div>
             <div className="modal-body d-flex align-items-center">
-              <div className="input-group w-75 mx-auto d-flex">
+              <form
+                onSubmit={handleSearch}
+                className="input-group w-75 mx-auto d-flex"
+              >
                 <input
                   type="search"
                   className="form-control p-3"
-                  placeholder="keywords"
-                  aria-describedby="search-icon-1"
+                  placeholder="Enter product name..."
+                  value={keyword}
+                  onChange={(e) => setKeyword(e.target.value)}
                 />
-                <span id="search-icon-1" className="input-group-text p-3">
+                <button
+                  type="submit"
+                  id="search-icon-1"
+                  className="input-group-text p-3"
+                >
                   <i className="fa fa-search" />
-                </span>
-              </div>
+                </button>
+              </form>
             </div>
           </div>
         </div>
       </div>
-      {/* Modal Search End */}
     </>
   );
 }
