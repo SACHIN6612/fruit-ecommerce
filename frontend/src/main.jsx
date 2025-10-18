@@ -10,6 +10,8 @@ import Testimonial from './Testimonial.jsx'
 import Page404 from './Page404.jsx'
 import Employees from './Employees.jsx'
 import ThankYou from "./Thankyoupage.jsx"
+import Signup from './Signup.jsx'
+import Login from './Login.jsx'
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
@@ -24,7 +26,8 @@ createRoot(document.getElementById('root')).render(
           <Route path="thankyou" element={<ThankYou />} />
           <Route path="testimonial" element={<Testimonial />} />
           <Route path="404" element={<Page404 />} />
-          <Route path="employees" element={<Employees />} />
+          <Route path="signup" element={<Signup />} />
+          <Route path="login" element={<Login />} />
         </Route>
       </Routes>
     </BrowserRouter>,

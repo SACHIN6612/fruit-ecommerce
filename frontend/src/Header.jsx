@@ -103,7 +103,7 @@ function Header() {
                     3
                   </span>
                 </a>
-                <a href="#" className="my-auto">
+                <a href="/signup" className="my-auto">
                   <i className="fas fa-user fa-2x" />
                 </a>
               </div>
