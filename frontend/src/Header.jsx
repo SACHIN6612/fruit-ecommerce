@@ -1,22 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Header() {
   const [keyword, setKeyword] = useState("");
+  const [cartCount, setCartCount] = useState(0); // ✅ cart count state
   const navigate = useNavigate();
 
+  // ✅ Handle Search
   const handleSearch = (e) => {
     e.preventDefault();
     const trimmed = keyword.trim();
     if (trimmed !== "") {
-      // Navigate to Shop page with search query
       navigate(`/shop?search=${encodeURIComponent(trimmed)}`);
-      // Close modal after searching
       const modal = document.getElementById("searchModal");
       const modalInstance = window.bootstrap.Modal.getInstance(modal);
-      modalInstance.hide();
+      if (modalInstance) modalInstance.hide();
     }
   };
+
+  // ✅ Fetch Cart Count from localStorage
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem("cartItems")) || [];
+    setCartCount(storedCart.length);
+
+    // Optional: Listen to changes from other components (if they update cart)
+    const handleStorageChange = () => {
+      const updatedCart = JSON.parse(localStorage.getItem("cartItems")) || [];
+      setCartCount(updatedCart.length);
+    };
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
+  }, []);
 
   return (
     <>
@@ -58,6 +72,7 @@ function Header() {
             <a href="/" className="navbar-brand">
               <h1 className="text-primary display-6">Fruitables</h1>
             </a>
+
             <button
               className="navbar-toggler py-2 px-3"
               type="button"
@@ -108,6 +123,7 @@ function Header() {
 
               {/* Right icons */}
               <div className="d-flex m-3 me-0">
+                {/* 🔍 Search Button */}
                 <button
                   className="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4"
                   data-bs-toggle="modal"
@@ -116,18 +132,25 @@ function Header() {
                   <i className="fas fa-search text-primary" />
                 </button>
 
+                {/* 🛒 Cart Button with Live Count */}
                 <a href="/cart" className="position-relative me-4 my-auto">
-                  <i className="fa fa-shopping-bag fa-2x" />
+                  <i className="fa fa-shopping-bag fa-2x text-dark" />
                   <span
-                    className="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1"
-                    style={{ top: "-5px", left: 15, height: 20, minWidth: 20 }}
+                    className="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1 fw-bold"
+                    style={{
+                      top: "-5px",
+                      left: 15,
+                      height: 22,
+                      minWidth: 22,
+                      fontSize: "12px",
+                    }}
                   >
-                    3
+                    {cartCount}
                   </span>
                 </a>
 
                 <a href="/login" className="my-auto">
-                  <i className="fas fa-user fa-2x" />
+                  <i className="fas fa-user fa-2x text-dark" />
                 </a>
               </div>
             </div>
@@ -135,7 +158,7 @@ function Header() {
         </div>
       </div>
 
-      {/* Modal Search */}
+      {/* 🔍 Modal Search */}
       <div
         className="modal fade"
         id="searchModal"
