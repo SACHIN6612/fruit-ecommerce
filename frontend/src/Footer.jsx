@@ -10,8 +10,10 @@ function Footer(){
             >
                 <div className="row g-4">
                 <div className="col-lg-3">
-                    <a href="#">
+                    <a href="/">
                     <h1 className="text-primary mb-0">Fruitables</h1>
+                    </a>
+                    <a href="/shop">
                     <p className="text-secondary mb-0">Fresh products</p>
                     </a>
                 </div>
@@ -116,7 +118,7 @@ function Footer(){
                     <a className="btn-link" href="">
                     Order History
                     </a>
-                    <a className="btn-link" href="/testimonials">
+                    <a className="btn-link" href="/testimonial">
                     Customer Reviews
                     </a>
                 </div>
@@ -143,7 +145,7 @@ function Footer(){
                 <span className="text-light">
                     <a href="#">
                     <i className="fas fa-copyright text-light me-2" />
-                    Your Site Name
+                    Fruits and Vegetables
                     </a>
                     , All right reserved.
                 </span>
