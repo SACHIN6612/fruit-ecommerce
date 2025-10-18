@@ -26,6 +26,7 @@ createRoot(document.getElementById('root')).render(
           <Route path="thankyou" element={<ThankYou />} />
           <Route path="testimonial" element={<Testimonial />} />
           <Route path="404" element={<Page404 />} />
+          <Route path="employees" element={<Employees />} />
           <Route path="signup" element={<Signup />} />
           <Route path="login" element={<Login />} />
         </Route>
