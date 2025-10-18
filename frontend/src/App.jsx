@@ -1,50 +1,64 @@
 import { useEffect, useState } from "react";
-import Header from './Header'
-import Footer from './Footer'
+import Header from "./Header";
+import Footer from "./Footer";
 import axios from "axios";
 
 function App() {
-
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-  const filteredProducts = selectedCategory === "All"
-    ? products
-    : products.filter(p => p.category_name === selectedCategory);
+  const filteredProducts =
+    selectedCategory === "All"
+      ? products
+      : products.filter((p) => p.category_name === selectedCategory);
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/all-products`).then((response) => {
-      setProducts(response.data)
-    }).catch((error) => {
-
-    })
-  }, [])
-
-  useEffect(() => {
-    axios.get("http://localhost:3000/categories-count")
-      .then(res => setCategories(res.data))
-      .catch(error => console.log(error));
+    axios
+      .get(`http://localhost:3000/all-products`)
+      .then((response) => {
+        setProducts(response.data);
+      })
+      .catch((error) => {});
   }, []);
 
-  // Testmonial Show Ho Iske liye
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/categories-count")
+      .then((res) => setCategories(res.data))
+      .catch((error) => console.log(error));
+  }, []);
 
   useEffect(() => {
-    // Wait for jQuery (CDN) to load
-    if (window.$) {
-      window.$(".testimonial-carousel").owlCarousel({
-        loop: true,
-        margin: 20,
-        nav: true,
-        items: 1,
+    if (typeof $ !== "undefined" && $.fn.owlCarousel) {
+      $(".testimonial-carousel").owlCarousel({
         autoplay: true,
-        autoplayTimeout: 3000,
+        smartSpeed: 1500,
+        center: false,
+        dots: true,
+        loop: true,
+        margin: 25,
+        nav: false,
+        responsiveClass: true,
         responsive: {
-          0: { items: 1 },
-          600: { items: 1 },
-          1000: { items: 1 }
-        }
+          0: {
+            items: 1,
+          },
+          576: {
+            items: 1,
+          },
+          768: {
+            items: 1,
+          },
+          992: {
+            items: 2,
+          },
+          1200: {
+            items: 2,
+          },
+        },
       });
+    } else {
     }
   }, []);
 
@@ -53,7 +67,7 @@ function App() {
       <Header />
       {/* Hero Start */}
       <div className="container-fluid py-5 mb-5 hero-header">
-        <div className="container py-5">
+        <div className="container-fluid py-5">
           <div className="row g-5 align-items-center">
             <div className="col-md-12 col-lg-7">
               <h4 className="mb-3 text-secondary">100% Organic Foods</h4>
@@ -109,7 +123,10 @@ function App() {
                   data-bs-target="#carouselId"
                   data-bs-slide="prev"
                 >
-                  <span className="carousel-control-prev-icon" aria-hidden="true" />
+                  <span
+                    className="carousel-control-prev-icon"
+                    aria-hidden="true"
+                  />
                   <span className="visually-hidden">Previous</span>
                 </button>
                 <button
@@ -118,7 +135,10 @@ function App() {
                   data-bs-target="#carouselId"
                   data-bs-slide="next"
                 >
-                  <span className="carousel-control-next-icon" aria-hidden="true" />
+                  <span
+                    className="carousel-control-next-icon"
+                    aria-hidden="true"
+                  />
                   <span className="visually-hidden">Next</span>
                 </button>
               </div>
@@ -231,18 +251,14 @@ function App() {
                   </li>
                 </ul>
               </div>
-
             </div>
             <div className="tab-content">
               <div id="tab-1" className="tab-pane fade show p-0 active">
                 <div className="row g-4">
                   <div className="col-lg-12">
                     <div className="row g-4">
-
-                      {filteredProducts.map(prod => (
-
+                      {filteredProducts.map((prod) => (
                         <div className="col-md-6 col-lg-4 col-xl-3">
-
                           <div className="rounded position-relative fruite-item">
                             <div className="fruite-img">
                               <img
@@ -259,14 +275,16 @@ function App() {
                             </div>
                             <div className="p-4 border border-secondary border-top-0 rounded-bottom text-start">
                               <h4>{prod.title}</h4>
-                              <p>
-                                {prod.description}
-                              </p>
+                              <p>{prod.description}</p>
                               <div className="d-flex mb-4">
                                 {[1, 2, 3, 4, 5].map((star) => (
                                   <small
                                     key={star}
-                                    className={prod.rating >= star ? "fa fa-star text-secondary" : "fa fa-star"}
+                                    className={
+                                      prod.rating >= star
+                                        ? "fa fa-star text-secondary"
+                                        : "fa fa-star"
+                                    }
                                   />
                                 ))}
                               </div>
@@ -285,9 +303,7 @@ function App() {
                             </div>
                           </div>
                         </div>
-
                       ))}
-
                     </div>
                   </div>
                 </div>
@@ -297,7 +313,7 @@ function App() {
         </div>
       </div>
       {/* Fruits Shop End*/}
-      {/* Featurs Start */}
+      {/* Features Start */}
       <div className="container-fluid service">
         <div className="container py-5">
           <div className="text-center mx-auto mb-5" style={{ maxWidth: 700 }}>
@@ -367,10 +383,12 @@ function App() {
             <div className="col-lg-6">
               <div className="py-4">
                 <h1 className="display-3 text-white">Fresh Exotic Fruits</h1>
-                <p className="fw-normal display-3 text-dark mb-4">in Our Store</p>
+                <p className="fw-normal display-3 text-dark mb-4">
+                  in Our Store
+                </p>
                 <p className="mb-4 text-dark">
-                  The generated Lorem Ipsum is therefore always free from repetition
-                  injected humour, or non-characteristic words etc.
+                  The generated Lorem Ipsum is therefore always free from
+                  repetition injected humour, or non-characteristic words etc.
                 </p>
                 <a
                   href="#"
@@ -409,18 +427,13 @@ function App() {
           <div className="text-center mx-auto mb-5" style={{ maxWidth: 700 }}>
             <h1 className="display-4">Bestseller Products</h1>
             <p>
-              Latin words, combined with a handful of model sentence structures, to
-              generate Lorem Ipsum which looks reasonable.
+              Latin words, combined with a handful of model sentence structures,
+              to generate Lorem Ipsum which looks reasonable.
             </p>
           </div>
           <div className="row g-4">
-
-            {
-              (products) ?
-
-                products.map((prod) => (
-
-
+            {products
+              ? products.map((prod) => (
                   <div className="col-lg-6 col-xl-4">
                     <div className="p-4 rounded bg-light">
                       <div className="row align-items-center">
@@ -436,11 +449,41 @@ function App() {
                             {prod.title}
                           </a>
                           <div className="d-flex my-3">
-                            <small className={(prod.rating >= 1) ? "fa fa-star text-primary" : "fa fa-star"} />
-                            <small className={(prod.rating >= 2) ? "fa fa-star text-primary" : "fa fa-star"} />
-                            <small className={(prod.rating >= 3) ? "fa fa-star text-primary" : "fa fa-star"} />
-                            <small className={(prod.rating >= 4) ? "fa fa-star text-primary" : "fa fa-star"} />
-                            <small className={(prod.rating >= 5) ? "fa fa-star text-primary" : "fa fa-star"} />
+                            <small
+                              className={
+                                prod.rating >= 1
+                                  ? "fa fa-star text-primary"
+                                  : "fa fa-star"
+                              }
+                            />
+                            <small
+                              className={
+                                prod.rating >= 2
+                                  ? "fa fa-star text-primary"
+                                  : "fa fa-star"
+                              }
+                            />
+                            <small
+                              className={
+                                prod.rating >= 3
+                                  ? "fa fa-star text-primary"
+                                  : "fa fa-star"
+                              }
+                            />
+                            <small
+                              className={
+                                prod.rating >= 4
+                                  ? "fa fa-star text-primary"
+                                  : "fa fa-star"
+                              }
+                            />
+                            <small
+                              className={
+                                prod.rating >= 5
+                                  ? "fa fa-star text-primary"
+                                  : "fa fa-star"
+                              }
+                            />
                             <small>({prod.reviews})</small>
                           </div>
                           <h4 className="mb-3">{prod.price}₹</h4>
@@ -448,18 +491,15 @@ function App() {
                             href={"/product/" + prod.id}
                             className="btn border border-secondary rounded-pill px-3 text-primary"
                           >
-                            <i className="fa fa-shopping-bag me-2 text-primary" /> Add to
-                            cart
+                            <i className="fa fa-shopping-bag me-2 text-primary" />{" "}
+                            Add to cart
                           </a>
                         </div>
                       </div>
                     </div>
-
                   </div>
-
                 ))
-                : ''
-            }
+              : ""}
           </div>
         </div>
       </div>
@@ -518,8 +558,9 @@ function App() {
                 />
                 <div className="mb-4 pb-4 border-bottom border-secondary">
                   <p className="mb-0">
-                    Lorem Ipsum is simply dummy text of the printing Ipsum has been
-                    the industry's standard dummy text ever since the 1500s,
+                    Lorem Ipsum is simply dummy text of the printing Ipsum has
+                    been the industry's standard dummy text ever since the
+                    1500s,
                   </p>
                 </div>
                 <div className="d-flex align-items-center flex-nowrap">
@@ -553,8 +594,9 @@ function App() {
                 />
                 <div className="mb-4 pb-4 border-bottom border-secondary">
                   <p className="mb-0">
-                    Lorem Ipsum is simply dummy text of the printing Ipsum has been
-                    the industry's standard dummy text ever since the 1500s,
+                    Lorem Ipsum is simply dummy text of the printing Ipsum has
+                    been the industry's standard dummy text ever since the
+                    1500s,
                   </p>
                 </div>
                 <div className="d-flex align-items-center flex-nowrap">
@@ -588,8 +630,9 @@ function App() {
                 />
                 <div className="mb-4 pb-4 border-bottom border-secondary">
                   <p className="mb-0">
-                    Lorem Ipsum is simply dummy text of the printing Ipsum has been
-                    the industry's standard dummy text ever since the 1500s,
+                    Lorem Ipsum is simply dummy text of the printing Ipsum has
+                    been the industry's standard dummy text ever since the
+                    1500s,
                   </p>
                 </div>
                 <div className="d-flex align-items-center flex-nowrap">
@@ -621,8 +664,7 @@ function App() {
       {/* Tastimonial End */}
       <Footer />
     </>
-
-  )
+  );
 }
 
 export default App;

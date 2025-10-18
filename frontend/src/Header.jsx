@@ -3,7 +3,7 @@ function Header(){
         <>
         {/* Navbar start */}
         <div className="container-fluid fixed-top">
-            <div className="container topbar bg-primary d-none d-lg-block">
+            <div className="container-fluid topbar bg-primary d-none d-lg-block my-2">
             <div className="d-flex justify-content-between">
                 <div className="top-info ps-2">
                 <small className="me-3">
@@ -32,7 +32,7 @@ function Header(){
                 </div>
             </div>
             </div>
-            <div className="container px-0">
+            <div className="container-fluid">
             <nav className="navbar navbar-light bg-white navbar-expand-xl">
                 <a href="/" className="navbar-brand">
                 <h1 className="text-primary display-6">Fruitables</h1>
