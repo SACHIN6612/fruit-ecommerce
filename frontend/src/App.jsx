@@ -7,21 +7,29 @@ function App() {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [searchTerm, setSearchTerm] = useState(""); // typing value
+  const [searchQuery, setSearchQuery] = useState(""); // button click value
 
-  const filteredProducts =
+  // ✅ Category Filter Logic
+  const categoryFilteredProducts =
     selectedCategory === "All"
       ? products
       : products.filter((p) => p.category_name === selectedCategory);
 
+  // ✅ Search + Category Combined Filter
+  const filteredProducts = categoryFilteredProducts.filter((p) =>
+    p.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  // ✅ Fetch Products
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/all-products`)
-      .then((response) => {
-        setProducts(response.data);
-      })
-      .catch((error) => {});
+      .get("http://localhost:3000/all-products")
+      .then((response) => setProducts(response.data))
+      .catch((error) => console.log(error));
   }, []);
 
+  // ✅ Fetch Categories
   useEffect(() => {
     axios
       .get("http://localhost:3000/categories-count")
@@ -29,9 +37,16 @@ function App() {
       .catch((error) => console.log(error));
   }, []);
 
+  // ✅ Search Button Click
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setSearchQuery(searchTerm); // 👈 This line applies the filter
+  };
+
   return (
     <>
       <Header />
+
       {/* Hero Start */}
       <div className="container-fluid py-5 mb-5 hero-header">
         <div className="container-fluid py-5">
@@ -39,23 +54,31 @@ function App() {
             <div className="col-md-12 col-lg-7">
               <h4 className="mb-3 text-secondary">100% Organic Foods</h4>
               <h1 className="mb-5 display-3 text-primary">
-                Organic Veggies &amp; Fruits Foods
+                Organic Veggies & Fruits Foods
               </h1>
-              <div className="position-relative mx-auto">
+
+              {/* ✅ Search Input and Button */}
+              <form
+                className="position-relative mx-auto"
+                onSubmit={handleSearch}
+              >
                 <input
                   className="form-control border-2 border-secondary w-75 py-3 px-4 rounded-pill"
-                  type="number"
-                  placeholder="Search"
+                  type="text"
+                  placeholder="Search for a product..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
                 />
                 <button
                   type="submit"
                   className="btn btn-primary border-2 border-secondary py-3 px-4 position-absolute rounded-pill text-white h-100"
                   style={{ top: 0, right: "25%" }}
                 >
-                  Submit Now
+                  Search
                 </button>
-              </div>
+              </form>
             </div>
+
             <div className="col-md-12 col-lg-5">
               <div
                 id="carouselId"
@@ -70,7 +93,7 @@ function App() {
                       alt="First slide"
                     />
                     <a href="#" className="btn px-4 py-2 text-white rounded">
-                      Fruites
+                      Fruits
                     </a>
                   </div>
                   <div className="carousel-item rounded">
@@ -84,37 +107,14 @@ function App() {
                     </a>
                   </div>
                 </div>
-                <button
-                  className="carousel-control-prev"
-                  type="button"
-                  data-bs-target="#carouselId"
-                  data-bs-slide="prev"
-                >
-                  <span
-                    className="carousel-control-prev-icon"
-                    aria-hidden="true"
-                  />
-                  <span className="visually-hidden">Previous</span>
-                </button>
-                <button
-                  className="carousel-control-next"
-                  type="button"
-                  data-bs-target="#carouselId"
-                  data-bs-slide="next"
-                >
-                  <span
-                    className="carousel-control-next-icon"
-                    aria-hidden="true"
-                  />
-                  <span className="visually-hidden">Next</span>
-                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
       {/* Hero End */}
-      {/* Fruits Shop Start*/}
+
+      {/* Products Section */}
       <div className="container-fluid fruite">
         <div className="container py-5">
           <div className="tab-class text-center">
@@ -148,87 +148,77 @@ function App() {
                       Vegetables
                     </button>
                   </li>
-                  <li className="nav-item">
-                    <button
-                      className="d-flex m-2 py-2 px-4 btn btn-outline-primary"
-                      onClick={() => setSelectedCategory("Dairy")}
-                    >
-                      Dairy
-                    </button>
-                  </li>
-                  <li className="nav-item">
-                    <button
-                      className="d-flex m-2 py-2 px-4 btn btn-outline-primary"
-                      onClick={() => setSelectedCategory("Bakery")}
-                    >
-                      Bakery
-                    </button>
-                  </li>
                 </ul>
               </div>
             </div>
+
+            {/* ✅ Filtered Products */}
             <div className="tab-content">
               <div id="tab-1" className="tab-pane fade show p-0 active">
                 <div className="row g-4">
-                  <div className="col-lg-12">
-                    <div className="row g-4">
-                      {filteredProducts.map((prod) => (
-                        <div className="col-md-6 col-lg-4 col-xl-3">
-                          <div className="rounded position-relative fruite-item">
-                            <div className="fruite-img">
-                              <img
-                                src={prod.thumbnail_image}
-                                className="img-fluid w-100 rounded-top"
-                                alt=""
-                              />
+                  {filteredProducts.length > 0 ? (
+                    filteredProducts.map((prod) => (
+                      <div
+                        className="col-md-6 col-lg-4 col-xl-3"
+                        key={prod.id}
+                      >
+                        <div className="rounded position-relative fruite-item">
+                          <div className="fruite-img">
+                            <img
+                              src={prod.thumbnail_image}
+                              className="img-fluid w-100 rounded-top"
+                              alt={prod.title}
+                            />
+                          </div>
+                          <div
+                            className="text-white bg-secondary px-3 py-1 rounded position-absolute"
+                            style={{ top: 10, left: 10 }}
+                          >
+                            {prod.category_name}
+                          </div>
+                          <div className="p-4 border border-secondary border-top-0 rounded-bottom text-start">
+                            <h4>{prod.title}</h4>
+                            <p>{prod.description}</p>
+                            <div className="d-flex mb-4">
+                              {[1, 2, 3, 4, 5].map((star) => (
+                                <small
+                                  key={star}
+                                  className={
+                                    prod.rating >= star
+                                      ? "fa fa-star text-secondary"
+                                      : "fa fa-star"
+                                  }
+                                />
+                              ))}
                             </div>
-                            <div
-                              className="text-white bg-secondary px-3 py-1 rounded position-absolute"
-                              style={{ top: 10, left: 10 }}
-                            >
-                              {prod.category_name}
-                            </div>
-                            <div className="p-4 border border-secondary border-top-0 rounded-bottom text-start">
-                              <h4>{prod.title}</h4>
-                              <p>{prod.description}</p>
-                              <div className="d-flex mb-4">
-                                {[1, 2, 3, 4, 5].map((star) => (
-                                  <small
-                                    key={star}
-                                    className={
-                                      prod.rating >= star
-                                        ? "fa fa-star text-secondary"
-                                        : "fa fa-star"
-                                    }
-                                  />
-                                ))}
-                              </div>
-                              <div className="d-flex justify-content-between flex-lg-wrap">
-                                <p className="text-dark fs-5 fw-bold mb-0">
-                                  ₹{prod.price} / kg
-                                </p>
-                                <a
-                                  href={"/product/" + prod.id}
-                                  className="btn border border-secondary rounded-pill px-3 text-primary"
-                                >
-                                  <i className="fa fa-shopping-bag me-2 text-primary" />{" "}
-                                  Add to cart
-                                </a>
-                              </div>
+                            <div className="d-flex justify-content-between flex-lg-wrap">
+                              <p className="text-dark fs-5 fw-bold mb-0">
+                                ₹{prod.price} / kg
+                              </p>
+                              <a
+                                href={"/product/" + prod.id}
+                                className="btn border border-secondary rounded-pill px-3 text-primary"
+                              >
+                                <i className="fa fa-shopping-bag me-2 text-primary" />{" "}
+                                Add to cart
+                              </a>
                             </div>
                           </div>
                         </div>
-                      ))}
-                    </div>
-                  </div>
+                      </div>
+                    ))
+                  ) : (
+                    <h5 className="text-danger text-center mt-4">
+                      No products found
+                    </h5>
+                  )}
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      {/* Fruits Shop End*/}
-      
+
       {/* Banner Section Start*/}
       <div className="container-fluid banner bg-secondary mt-5">
         <div className="container">
@@ -372,9 +362,7 @@ function App() {
                     alt="Client 1"
                     className="client-img mb-3"
                   />
-                  <h5 className="fw-semibold mb-0">
-                    Sarah Johnson
-                  </h5>
+                  <h5 className="fw-semibold mb-0">Sarah Johnson</h5>
                   <span className="text-muted small mb-2">
                     Marketing Manager
                   </span>
@@ -401,9 +389,7 @@ function App() {
                     alt="Client 2"
                     className="client-img mb-3"
                   />
-                  <h5 className="fw-semibold mb-0">
-                    Michael Smith
-                  </h5>
+                  <h5 className="fw-semibold mb-0">Michael Smith</h5>
                   <span className="text-muted small mb-2">Web Developer</span>
                   <div className="stars mb-3">
                     <i className="bi bi-star-fill" />
