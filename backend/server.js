@@ -146,14 +146,12 @@ app.post("/products/:id/rating", (req, res) => {
     return res.status(400).json({ error: "Rating must be between 1 and 5" });
   }
 
-  const sql = `
+  Connection.query(`
     UPDATE products 
     SET rating = ((rating * rating_count) + ?) / (rating_count + 1),
         rating_count = rating_count + 1
     WHERE id = ?
-  `;
-
-  Connection.query(sql, [rating, productId], (err, result) => {
+  `, [rating, productId], (err, result) => {
     if (err) return res.status(500).json({ error: err.message });
     res.json({ message: "Rating added successfully" });
   });

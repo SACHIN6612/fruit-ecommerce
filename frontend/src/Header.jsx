@@ -82,7 +82,10 @@ function Header() {
               <span className="fa fa-bars text-primary" />
             </button>
 
-            <div className="collapse navbar-collapse bg-white" id="navbarCollapse">
+            <div
+              className="collapse navbar-collapse bg-white"
+              id="navbarCollapse"
+            >
               <div className="navbar-nav mx-auto">
                 <a href="/" className="nav-item nav-link active">
                   Home
