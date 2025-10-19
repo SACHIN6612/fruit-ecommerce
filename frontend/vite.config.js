@@ -1,30 +1,27 @@
-// vite.config.js
-
-<<<<<<< Updated upstream
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-=======
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
->>>>>>> Stashed changes
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  // यह Configuration सबसे ज़रूरी है:
-  optimizeDeps: {
-    // Vite को बताएं कि इन packages को build के दौरान Pre-bundle करें
-    include: [
-<<<<<<< Updated upstream
-      'react-router-dom', 
-      'react-router' // अगर आप सीधे 'react-router' का उपयोग कर रहे हैं
-    ]
-  }
-})
-=======
-      "react-router-dom",
-      "react-router", // अगर आप सीधे 'react-router' का उपयोग कर रहे हैं
-    ],
+
+  // ⚙️ optional: if deploying to subfolder (e.g. GitHub Pages)
+  base: '/',
+
+  server: {
+    port: 5173,              // default port
+    open: true,              // auto open browser
+    proxy: {
+      // 🧠 optional: connect frontend to backend API
+      '/api': {
+        target: 'http://localhost:5000', // your Node.js backend
+        changeOrigin: true,
+        secure: false,
+      },
+    },
   },
-});
->>>>>>> Stashed changes
+
+  build: {
+    outDir: 'dist',
+  },
+})

@@ -1866,8 +1866,8 @@ progress {
   opacity: 1;
 }
 .form-control:disabled,
+.form-control:disabled,
 .form-control:read-only {
-  background-color: #e9ecef;
   opacity: 1;
 }
 .form-control::file-selector-button {
@@ -2378,7 +2378,7 @@ textarea.form-control-lg {
   > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(
     .valid-feedback
   ):not(.invalid-tooltip):not(.invalid-feedback) {
-  margin-left: -1px;
+  margin-left: 3px;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }

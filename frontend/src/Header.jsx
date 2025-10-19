@@ -134,7 +134,7 @@ function Header() {
 
                 {/* 🛒 Cart Button with Live Count */}
                 <a href="/cart" className="position-relative me-4 my-auto">
-                  <i className="fa fa-shopping-bag fa-2x text-dark" />
+                  <i className="fa fa-shopping-bag fa-2x text-primary" />
                   <span
                     className="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1 fw-bold"
                     style={{
@@ -150,7 +150,7 @@ function Header() {
                 </a>
 
                 <a href="/login" className="my-auto">
-                  <i className="fas fa-user fa-2x text-dark" />
+                  <i className="fas fa-user fa-2x text-primary" />
                 </a>
               </div>
             </div>
